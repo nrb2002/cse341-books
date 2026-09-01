@@ -1,0 +1,31 @@
+{
+  "name": "cse341-books",
+  "version": "1.0.0",
+  "description": "A simple web service that works with a collection of books",
+  "keywords": [
+    "cse341-books"
+  ],
+  "homepage": "https://github.com/nrb2002/cse341-books#readme",
+  "bugs": {
+    "url": "https://github.com/nrb2002/cse341-books/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrb2002/cse341-books.git"
+  },
+  "license": "ISC",
+  "author": "Baron Tshibasu",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env server.js",
+    "dev": "nodemon --env-file=.env server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
