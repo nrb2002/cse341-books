@@ -1,5 +1,5 @@
 
-import { booksCollection } from './database.js';
+import { booksCollection } from './connect.js';
 
 const books = [
   {
