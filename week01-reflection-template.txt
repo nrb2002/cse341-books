@@ -1,0 +1,37 @@
+# Week 01 Reflection
+
+1. Include a link to one of your Pull Requests (PRs) at GitHub. (It should be merged and closed at this point.)
+
+GitHub Pull Request Link: https://github.com/nrb2002/cse341-books/pull/7 
+
+2. Include a link to one of your Issues at GitHub. (It should be closed at this point.)
+
+GitHub Issue Link:https://github.com/users/nrb2002/projects/4/views/1?pane=issue&itemId=239751074&issue=nrb2002%7Ccse341-books%7C2 
+
+3. Which issue took more or less time than expected? Why?
+
+Answer: Issue 3 - Implement a route to retrieve one book by ID. I, by mistake, put the requestedId variable in the controller into curly braces. Consequently, all book searches would return "Book not found". 
+
+4. Include a link to your walk-though video. (It must include your name, show your web service working at Render, explain the way your `Get Single Book` controller works, and discuss status codes.):
+
+Video link: https://youtu.be/4dneFjK8XXg
+
+5.a. Include a GitHub link to a file that shows how your app uses sensitive data, such as the MongoDB connection string.
+
+GitHub link: https://github.com/nrb2002/cse341-books/blob/main/src/db/connect.js 
+
+5.b. How did you store sensitive data? Why is that approach important?
+
+Answer: I stored sensitive data in a ".env" file and added the file in ".gitignore" to avoid committing it to GitHub. 
+
+6.a. Include a GitHub link to a file that shows one other implementation decision you made.
+
+GitHub link: https://github.com/nrb2002/cse341-books/blob/main/src/models/books.js  
+
+6.b. What decision does this file show, and why did you make that choice?
+
+Answer: This is the api models in which I'm importing the books collection. In this file, I'm importing the books collection as a method of a Mongo client. I found it straightforward, compared to importing some getDB function and then pulling the collections through it. 
+
+7. What is one specific habit or process you will work on for next week?
+
+Answer: I will stay simple and clear while creating issues and specifications. I've notice that simple and clears issues are easy to implement and resist to the temptation of perfecting everything at once. 
