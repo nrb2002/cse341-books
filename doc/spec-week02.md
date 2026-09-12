@@ -1,4 +1,4 @@
-# Week 02 Specification — Version 2
+# CSE 341 Week 02 Specification — Version 2
 
 # Feature 1: Book CRUD Operations
 
