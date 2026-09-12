@@ -8,6 +8,9 @@ if (!uri) {
 }
 
 const client = new MongoClient(uri);
+
 const dbName = client.db(process.env.DB_NAME);
 
 export const booksCollection = dbName.collection('books');
+export const authorsCollection = dbName.collection('authors');
+export const bookAuthorsCollection = dbName.collection('bookAuthors');
