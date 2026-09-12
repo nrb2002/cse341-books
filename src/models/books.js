@@ -34,6 +34,14 @@ const createBook = async (book) => {
         return null;
     }
 
+    const authors = await authorsCollection
+        .find({ id: { $in: book.authorIds } })
+        .toArray();
+
+    if (authors.length !== book.authorIds.length) {
+        return 'authors-not-found';
+    }
+
     await booksCollection.insertOne({
         id: book.id,
         title: book.title,
@@ -41,7 +49,10 @@ const createBook = async (book) => {
     });
 
     const relationships = book.authorIds.map((authorId) => {
-        return { bookId: book.id, authorId };
+        return {
+            bookId: book.id,
+            authorId
+        };
     });
 
     await bookAuthorsCollection.insertMany(relationships);
@@ -53,7 +64,23 @@ const createBook = async (book) => {
  * Updates an existing book.
  ***************************************************/
 const updateBook = async (bookId, book) => {
-    const result = await booksCollection.updateOne(
+    const existingBook = await booksCollection.findOne({
+        id: bookId
+    });
+
+    if (!existingBook) {
+        return null;
+    }
+
+    const authors = await authorsCollection
+        .find({ id: { $in: book.authorIds } })
+        .toArray();
+
+    if (authors.length !== book.authorIds.length) {
+        return 'authors-not-found';
+    }
+
+    await booksCollection.updateOne(
         { id: bookId },
         {
             $set: {
@@ -62,10 +89,6 @@ const updateBook = async (bookId, book) => {
             }
         }
     );
-
-    if (result.matchedCount === 0) {
-        return null;
-    }
 
     await bookAuthorsCollection.deleteMany({
         bookId

@@ -38,7 +38,12 @@ const createAuthor = async (author) => {
         return null;
     }
 
-    await authorsCollection.insertOne(author);
+    await authorsCollection.insertOne({
+        id: author.id,
+        name: author.name,
+        birthDate: author.birthDate,
+        nationality: author.nationality
+    });
 
     return author;
 };
