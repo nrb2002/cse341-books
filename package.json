@@ -23,7 +23,8 @@
     "dev": "nodemon --env-file=.env server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "swagger": "node swagger.js"
+    "swagger": "node swagger.js",
+    "format": "prettier --write src/**/*.js"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "eslint": "^10.9.1",
     "nodemon": "^3.1.14",
+    "prettier": "^3.9.6",
     "swagger-jsdoc": "^6.3.0"
   }
 }
