@@ -1,12 +1,12 @@
-import express from 'express';
+import express from "express";
 
 import {
-    getAuthorsHandler,
-    getAuthorByIdHandler,
-    createAuthorHandler,
-    updateAuthorHandler,
-    deleteAuthorHandler
-} from '../controllers/authors.js';
+  getAuthorsHandler,
+  getAuthorByIdHandler,
+  createAuthorHandler,
+  updateAuthorHandler,
+  deleteAuthorHandler,
+} from "../controllers/authors.js";
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ const router = express.Router();
  *       500:
  *         description: Internal server error
  */
-router.get('/authors', getAuthorsHandler);
+router.get("/authors", getAuthorsHandler);
 
 /**
  * @openapi
@@ -48,7 +48,7 @@ router.get('/authors', getAuthorsHandler);
  *       500:
  *         description: Internal server error
  */
-router.get('/authors/:id', getAuthorByIdHandler);
+router.get("/authors/:id", getAuthorByIdHandler);
 
 /**
  * @openapi
@@ -89,7 +89,7 @@ router.get('/authors/:id', getAuthorByIdHandler);
  *       500:
  *         description: Internal server error
  */
-router.post('/authors', createAuthorHandler);
+router.post("/authors", createAuthorHandler);
 
 /**
  * @openapi
@@ -136,7 +136,7 @@ router.post('/authors', createAuthorHandler);
  *       500:
  *         description: Internal server error
  */
-router.put('/authors/:id', updateAuthorHandler);
+router.put("/authors/:id", updateAuthorHandler);
 
 /**
  * @openapi
@@ -163,6 +163,6 @@ router.put('/authors/:id', updateAuthorHandler);
  *       500:
  *         description: Internal server error
  */
-router.delete('/authors/:id', deleteAuthorHandler);
+router.delete("/authors/:id", deleteAuthorHandler);
 
 export default router;
