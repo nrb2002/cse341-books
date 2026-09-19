@@ -1,0 +1,40 @@
+# Week 02 Reflection
+
+## Author: Baron Tshibasu
+
+## Links
+
+1. Provide your walk-through video link. This video must demonstrate your API working at Render and follow the script in the assignment.
+Video link: https://youtu.be/BlxkZk4Cz8E
+
+2. Provide a link to your deployed Render api-docs URL:
+Render link: https://cse341-books-fe93.onrender.com/api-docs/ 
+
+3. Provide links to your Pull Requests (they should be merged at this point):
+Books PR: 
+
+- https://github.com/nrb2002/cse341-books/pull/11
+- https://github.com/nrb2002/cse341-books/pull/12
+
+Authors PR:
+- https://github.com/nrb2002/cse341-books/pull/10
+
+4. Provide links to your GitHub Issues (they should be closed at this point).
+Books Issue: https://github.com/nrb2002/cse341-books/issues/8
+Authors Issue:https://github.com/nrb2002/cse341-books/issues/9
+
+## Plan vs. Implementation
+
+5. Which part of the work took more or less time than expected? Why?
+
+Answer: The books issue took more time than expected. The reason: I made some indentation and request body mistakes in the routes. Consequently, the endpoints wouldn't appear in Swagger UI. As my brain grew more and more tired, I decided to hold on until the next day to be able to find the bug and resolve it. I ended up holding up for an entire week. 
+
+6. How did Swagger help you in your work this week?
+
+Answer: Swagger helped me test the API. I could juggle with inserting authors and associating them to a book and so forth and so on. 
+
+## Week 03 Improvement
+
+7. What is one specific habit or process you will apply next week?
+
+Answer: Next week, I will be a little more organized and specific with my issues and PRs. I'm not sure what happened but I almost lost control of my PRs this week. 
