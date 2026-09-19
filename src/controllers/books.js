@@ -133,7 +133,9 @@ const updateBookHandler = async (req, res) => {
         });
     }
 
-    if (!authorIds.every((authorId) => {typeof authorId === 'string'})) {
+    if (!authorIds.every((authorId) => {
+        return typeof authorId === 'string';
+    })) {
         return res.status(400).json({
             message: 'Invalid author IDs'
         });

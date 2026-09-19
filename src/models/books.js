@@ -100,9 +100,9 @@ const createBook = async (book) => {
     return null;
   }
 
-    const uniqueAuthorIds = new Set(book.authorIds);
+    const validAuthors = new Set(book.authorIds);
 
-    if (uniqueAuthorIds.size !== book.authorIds.length) {
+    if (validAuthors.size !== book.authorIds.length) {
         return 'duplicate-authors';
     }
 
@@ -147,9 +147,9 @@ const updateBook = async (bookId, book) => {
     return null;
   }
 
-    const uniqueAuthorIds = new Set(book.authorIds);
+    const validAuthors = new Set(book.authorIds);
 
-    if (uniqueAuthorIds.size !== book.authorIds.length) {
+    if (validAuthors.size !== book.authorIds.length) {
         return 'duplicate-authors';
     }
 

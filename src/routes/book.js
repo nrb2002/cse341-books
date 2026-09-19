@@ -71,7 +71,6 @@ router.get("/books/:id", getBookByIdHandler);
  *             properties:
  *               id:
  *                 type: string
-<<<<<<< HEAD
  *                 example: b2
  *               title:
  *                 type: string
@@ -84,25 +83,11 @@ router.get("/books/:id", getBookByIdHandler);
  *                 type: array
  *                 minItems: 1
  *                 uniqueItems: true
-=======
- *                 example: b4
- *               title:
- *                 type: string
- *                 example: 1984
- *               publicationDate:
- *                 type: string
- *                 example: 1949-06-08
- *               authorIds:
- *                 type: array
->>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *                 items:
  *                   type: string
  *                 example:
  *                   - a1
-<<<<<<< HEAD
  *                   - a2
-=======
->>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     responses:
  *       201:
  *         description: Book created successfully
@@ -154,19 +139,12 @@ router.post('/books', createBookHandler);
  *                   type: string
  *                 example:
  *                   - a1
-<<<<<<< HEAD
  *                   - a3
-=======
->>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     responses:
  *       200:
  *         description: Book updated successfully
  *       400:
-<<<<<<< HEAD
  *         description: Invalid book data, duplicate authors, or author not found
-=======
- *         description: Invalid book data
->>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *       404:
  *         description: Book not found
  *       500:
