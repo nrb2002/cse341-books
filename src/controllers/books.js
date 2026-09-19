@@ -126,6 +126,8 @@ const updateBookHandler = async (req, res) => {
         typeof title !== 'string' ||
         typeof publicationDate !== 'string' ||
         !Array.isArray(authorIds) ||
+        !title.trim() ||
+        !publicationDate.trim() ||
         authorIds.length === 0
     ) {
         return res.status(400).json({
