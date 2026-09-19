@@ -16,10 +16,10 @@ Book documents will be stored in the `books` collection.
 
 Each book contains the following fields:
 
-* `id`: string, required, custom ID such as `b1`
-* `author`: string, required
-* `title`: string, required
-* `publicationDate`: string, required
+- `id`: string, required, custom ID such as `b1`
+- `author`: string, required
+- `title`: string, required
+- `publicationDate`: string, required
 
 Example:
 
@@ -79,8 +79,8 @@ Return all books stored in the `books` collection.
 
 ### Success
 
-* Status code: `200`
-* Response body: a JSON array containing all book documents.
+- Status code: `200`
+- Response body: a JSON array containing all book documents.
 
 Example:
 
@@ -103,7 +103,7 @@ Example:
 
 ### Errors
 
-* `500` if an unexpected server or database error occurs.
+- `500` if an unexpected server or database error occurs.
 
 The error response should not expose raw database or server details.
 
@@ -131,8 +131,8 @@ GET /books/b1
 
 ### Success
 
-* Status code: `200`
-* Response body: the matching book object.
+- Status code: `200`
+- Response body: the matching book object.
 
 Example:
 
@@ -147,8 +147,8 @@ Example:
 
 ### Errors
 
-* `404` if no book exists with the requested ID.
-* `500` if an unexpected server or database error occurs.
+- `404` if no book exists with the requested ID.
+- `500` if an unexpected server or database error occurs.
 
 Example `404` response:
 
@@ -184,8 +184,8 @@ src/models/books.js
 
 The model should provide functions such as:
 
-* `getAllBooks()`
-* `getBookById(bookId)`
+- `getAllBooks()`
+- `getBookById(bookId)`
 
 The model should handle communication with the MongoDB `books` collection.
 
@@ -201,11 +201,11 @@ src/controllers/books.js
 
 The controllers should:
 
-* Receive the request.
-* Obtain required parameters.
-* Call the appropriate model function.
-* Return the appropriate HTTP status and JSON response.
-* Handle unexpected errors without exposing internal error details.
+- Receive the request.
+- Obtain required parameters.
+- Call the appropriate model function.
+- Return the appropriate HTTP status and JSON response.
+- Handle unexpected errors without exposing internal error details.
 
 ### Router
 
@@ -230,19 +230,19 @@ GET /books/:id
 
 The project should follow the CSE 341 coding standards:
 
-* Use ES modules with `import` and `export`.
-* Do not use CommonJS `require()` or `module.exports`.
-* Use `const` by default.
-* Do not use `var`.
-* Use arrow functions where appropriate.
-* Use `async/await` for asynchronous operations.
-* Use `try/catch` for error handling.
-* Do not use `.then()` or `.catch()`.
-* Return after sending an Express response when necessary to prevent further execution.
-* Use descriptive names for variables and functions.
-* Keep database logic in model functions.
-* Keep HTTP request/response logic in controllers.
-* Do not expose raw database errors to API clients.
+- Use ES modules with `import` and `export`.
+- Do not use CommonJS `require()` or `module.exports`.
+- Use `const` by default.
+- Do not use `var`.
+- Use arrow functions where appropriate.
+- Use `async/await` for asynchronous operations.
+- Use `try/catch` for error handling.
+- Do not use `.then()` or `.catch()`.
+- Return after sending an Express response when necessary to prevent further execution.
+- Use descriptive names for variables and functions.
+- Keep database logic in model functions.
+- Keep HTTP request/response logic in controllers.
+- Do not expose raw database errors to API clients.
 
 ---
 
@@ -252,15 +252,15 @@ The API must provide appropriate HTTP status codes.
 
 ### Successful requests
 
-* `200` for successful GET requests.
+- `200` for successful GET requests.
 
 ### Client errors
 
-* `404` when the requested book does not exist.
+- `404` when the requested book does not exist.
 
 ### Server errors
 
-* `500` for unexpected server or database errors.
+- `500` for unexpected server or database errors.
 
 Error responses should use JSON and provide a clear message.
 
@@ -272,17 +272,17 @@ The following tests must be performed.
 
 ### GET /books
 
-* Verify that the endpoint returns `200`.
-* Verify that the response is a JSON array.
-* Verify that the returned books contain the expected fields.
-* Verify that database errors are handled with `500`.
+- Verify that the endpoint returns `200`.
+- Verify that the response is a JSON array.
+- Verify that the returned books contain the expected fields.
+- Verify that database errors are handled with `500`.
 
 ### GET /books/:id
 
-* Verify that an existing book returns `200`.
-* Verify that the correct book is returned.
-* Verify that a nonexistent book returns `404`.
-* Verify that unexpected database errors return `500`.
+- Verify that an existing book returns `200`.
+- Verify that the correct book is returned.
+- Verify that a nonexistent book returns `404`.
+- Verify that unexpected database errors return `500`.
 
 ---
 
@@ -292,10 +292,10 @@ The application must be deployed to Render.
 
 The deployed application must:
 
-* Connect successfully to MongoDB.
-* Provide the `/books` route.
-* Provide the `/books/:id` route.
-* Return the expected status codes and JSON responses.
+- Connect successfully to MongoDB.
+- Provide the `/books` route.
+- Provide the `/books/:id` route.
+- Return the expected status codes and JSON responses.
 
 The Week 01 routes must be verified both locally and on the deployed application.
 
@@ -303,17 +303,17 @@ The Week 01 routes must be verified both locally and on the deployed application
 
 # Week 01 Completion Checklist
 
-* [ ] Node.js and Express application created.
-* [ ] MongoDB connection configured.
-* [ ] `cse341-books-db` database configured.
-* [ ] `books` collection created/populated.
-* [ ] MVC structure implemented.
-* [ ] `GET /books` implemented.
-* [ ] `GET /books/:id` implemented.
-* [ ] Custom string book IDs used for route parameters.
-* [ ] Appropriate `200`, `404`, and `500` responses implemented.
-* [ ] Error responses do not expose raw database errors.
-* [ ] Code follows CSE 341 standards.
-* [ ] API deployed to Render.
-* [ ] Both GET routes tested locally.
-* [ ] Both GET routes tested on the deployed application.
+- [ ] Node.js and Express application created.
+- [ ] MongoDB connection configured.
+- [ ] `cse341-books-db` database configured.
+- [ ] `books` collection created/populated.
+- [ ] MVC structure implemented.
+- [ ] `GET /books` implemented.
+- [ ] `GET /books/:id` implemented.
+- [ ] Custom string book IDs used for route parameters.
+- [ ] Appropriate `200`, `404`, and `500` responses implemented.
+- [ ] Error responses do not expose raw database errors.
+- [ ] Code follows CSE 341 standards.
+- [ ] API deployed to Render.
+- [ ] Both GET routes tested locally.
+- [ ] Both GET routes tested on the deployed application.

@@ -8,7 +8,29 @@ import {
  * Retrieves all books.
  ***************************************************/
 const getAllBooks = async () => {
-    const books = await booksCollection.find({}).toArray();
+    const books = await booksCollection.aggregate([
+        {
+            $lookup: {
+                from: 'bookAuthors',
+                localField: 'id',
+                foreignField: 'bookId',
+                as: 'bookAuthorRelationships'
+            }
+        },
+        {
+            $lookup: {
+                from: 'authors',
+                localField: 'bookAuthorRelationships.authorId',
+                foreignField: 'id',
+                as: 'authors'
+            }
+        },
+        {
+            $project: {
+                bookAuthorRelationships: 0
+            }
+        }
+    ]).toArray();
 
     return books;
 };
@@ -17,7 +39,9 @@ const getAllBooks = async () => {
  * Retrieves a book by its ID.
  ***************************************************/
 const getBookById = async (bookId) => {
-    const book = await booksCollection.findOne({ id: bookId });
+    const book = await booksCollection.findOne({
+        id: bookId
+    });
 
     return book;
 };
@@ -34,8 +58,16 @@ const createBook = async (book) => {
         return null;
     }
 
+    const uniqueAuthorIds = new Set(book.authorIds);
+
+    if (uniqueAuthorIds.size !== book.authorIds.length) {
+        return 'duplicate-authors';
+    }
+
     const authors = await authorsCollection
-        .find({ id: { $in: book.authorIds } })
+        .find({
+            id: { $in: book.authorIds }
+        })
         .toArray();
 
     if (authors.length !== book.authorIds.length) {
@@ -72,8 +104,16 @@ const updateBook = async (bookId, book) => {
         return null;
     }
 
+    const uniqueAuthorIds = new Set(book.authorIds);
+
+    if (uniqueAuthorIds.size !== book.authorIds.length) {
+        return 'duplicate-authors';
+    }
+
     const authors = await authorsCollection
-        .find({ id: { $in: book.authorIds } })
+        .find({
+            id: { $in: book.authorIds }
+        })
         .toArray();
 
     if (authors.length !== book.authorIds.length) {

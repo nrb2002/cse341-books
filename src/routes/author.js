@@ -1,11 +1,11 @@
 import express from 'express';
 
 import {
-    getAuthorsHandler,
-    getAuthorByIdHandler,
-    createAuthorHandler,
-    updateAuthorHandler,
-    deleteAuthorHandler
+  getAuthorsHandler,
+  getAuthorByIdHandler,
+  createAuthorHandler,
+  updateAuthorHandler,
+  deleteAuthorHandler,
 } from '../controllers/authors.js';
 
 const router = express.Router();

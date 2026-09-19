@@ -6,13 +6,13 @@
 
 Update the existing Week 01 Books API so that:
 
-* Books support complete CRUD operations.
-* Books can have one or more authors.
-* Authors can be associated with multiple books.
-* Every book route is documented and testable in Swagger.
-* The existing Week 01 GET routes continue to work.
-* The API validates all book and author references.
-* The API works locally and on the deployed Render application.
+- Books support complete CRUD operations.
+- Books can have one or more authors.
+- Authors can be associated with multiple books.
+- Every book route is documented and testable in Swagger.
+- The existing Week 01 GET routes continue to work.
+- The API validates all book and author references.
+- The API works locally and on the deployed Render application.
 
 ## Data Model
 
@@ -20,9 +20,9 @@ Book documents will be stored in the `books` collection.
 
 Required book fields:
 
-* `id`: string, required, unique custom ID such as `b1`
-* `title`: string, required
-* `publicationDate`: string, required, formatted as `YYYY-MM-DD`
+- `id`: string, required, unique custom ID such as `b1`
+- `title`: string, required
+- `publicationDate`: string, required, formatted as `YYYY-MM-DD`
 
 Example:
 
@@ -109,14 +109,14 @@ Purpose: Return all books.
 
 Success:
 
-* Status code: `200`
-* Response body: an array of book objects.
+- Status code: `200`
+- Response body: an array of book objects.
 
 The response may include the authors associated with each book if the implementation chooses to provide expanded relationship information.
 
 Errors:
 
-* `500` if an unexpected server or database error occurs.
+- `500` if an unexpected server or database error occurs.
 
 This route already exists from Week 01 and must continue working.
 
@@ -128,15 +128,15 @@ Purpose: Return one book by its custom ID.
 
 Success:
 
-* Status code: `200`
-* Response body: the matching book object.
+- Status code: `200`
+- Response body: the matching book object.
 
 The API may include the authors associated with the book.
 
 Errors:
 
-* `404` if no book exists with that ID.
-* `500` if an unexpected server or database error occurs.
+- `404` if no book exists with that ID.
+- `500` if an unexpected server or database error occurs.
 
 This route already exists from Week 01 and must continue working.
 
@@ -159,34 +159,34 @@ Request body:
 
 Required fields:
 
-* `id`
-* `title`
-* `publicationDate`
-* `authorIds`
+- `id`
+- `title`
+- `publicationDate`
+- `authorIds`
 
 `authorIds` must contain at least one author ID.
 
 Validation:
 
-* All required fields must be present.
-* `id` must be unique.
-* `authorIds` must contain valid string IDs.
-* Every ID in `authorIds` must match an existing author.
-* Duplicate author IDs within the same request must be rejected.
+- All required fields must be present.
+- `id` must be unique.
+- `authorIds` must contain valid string IDs.
+- Every ID in `authorIds` must match an existing author.
+- Duplicate author IDs within the same request must be rejected.
 
 Success:
 
-* Status code: `201`
-* Response body: the newly created book.
+- Status code: `201`
+- Response body: the newly created book.
 
 Errors:
 
-* `400` if a required field is missing.
-* `400` if `authorIds` is missing or empty.
-* `400` if the book ID already exists.
-* `400` if one or more referenced authors do not exist.
-* `400` if duplicate author IDs are supplied.
-* `500` if an unexpected server or database error occurs.
+- `400` if a required field is missing.
+- `400` if `authorIds` is missing or empty.
+- `400` if the book ID already exists.
+- `400` if one or more referenced authors do not exist.
+- `400` if duplicate author IDs are supplied.
+- `500` if an unexpected server or database error occurs.
 
 Example invalid-author response:
 
@@ -216,26 +216,26 @@ The book `id` comes from the URL and cannot be changed through the request body.
 
 Validation:
 
-* The book must exist.
-* All required fields must be present.
-* `authorIds` must contain at least one author.
-* Every author ID must reference an existing author.
-* Duplicate author IDs must be rejected.
+- The book must exist.
+- All required fields must be present.
+- `authorIds` must contain at least one author.
+- Every author ID must reference an existing author.
+- Duplicate author IDs must be rejected.
 
 The update must replace the book's existing author relationships with the submitted `authorIds`.
 
 Success:
 
-* Status code: `200`
-* Response body: the updated book.
+- Status code: `200`
+- Response body: the updated book.
 
 Errors:
 
-* `400` if a required field is missing.
-* `400` if `authorIds` is empty or invalid.
-* `400` if one or more authors do not exist.
-* `404` if the book does not exist.
-* `500` if an unexpected server or database error occurs.
+- `400` if a required field is missing.
+- `400` if `authorIds` is empty or invalid.
+- `400` if one or more authors do not exist.
+- `404` if the book does not exist.
+- `500` if an unexpected server or database error occurs.
 
 ---
 
@@ -247,13 +247,13 @@ When a book is deleted, all corresponding documents in the `bookAuthors` collect
 
 Success:
 
-* Status code: `204`
-* Response body: none.
+- Status code: `204`
+- Response body: none.
 
 Errors:
 
-* `404` if no book exists with that ID.
-* `500` if an unexpected server or database error occurs.
+- `404` if no book exists with that ID.
+- `500` if an unexpected server or database error occurs.
 
 ---
 
@@ -261,14 +261,14 @@ Errors:
 
 The implementation must:
 
-* Use custom string IDs.
-* Prevent duplicate book IDs.
-* Prevent clients from changing the book ID.
-* Validate every referenced author before creating or updating relationships.
-* Prevent duplicate book-author relationships.
-* Remove a book's relationship records when the book is deleted.
-* Never expose raw MongoDB errors to clients.
-* Only update explicitly permitted fields.
+- Use custom string IDs.
+- Prevent duplicate book IDs.
+- Prevent clients from changing the book ID.
+- Validate every referenced author before creating or updating relationships.
+- Prevent duplicate book-author relationships.
+- Remove a book's relationship records when the book is deleted.
+- Never expose raw MongoDB errors to clients.
+- Only update explicitly permitted fields.
 
 ---
 
@@ -290,10 +290,10 @@ Author documents will be stored in the `authors` collection.
 
 Required fields:
 
-* `id`: string, required, unique custom ID such as `a1`
-* `name`: string, required
-* `birthDate`: string, required, formatted as `YYYY-MM-DD`
-* `nationality`: string, required
+- `id`: string, required, unique custom ID such as `a1`
+- `name`: string, required
+- `birthDate`: string, required, formatted as `YYYY-MM-DD`
+- `nationality`: string, required
 
 Example:
 
@@ -349,12 +349,12 @@ Purpose: Return all authors.
 
 Success:
 
-* Status code: `200`
-* Response body: an array of author objects.
+- Status code: `200`
+- Response body: an array of author objects.
 
 Errors:
 
-* `500` with:
+- `500` with:
 
 ```json
 {
@@ -370,15 +370,15 @@ Purpose: Return one author by custom ID.
 
 Success:
 
-* Status code: `200`
-* Response body: the matching author object.
+- Status code: `200`
+- Response body: the matching author object.
 
 The response may include the author's associated books if relationship information is requested by the implementation.
 
 Errors:
 
-* `404` if the author does not exist.
-* `500` if an unexpected server or database error occurs.
+- `404` if the author does not exist.
+- `500` if an unexpected server or database error occurs.
 
 Example:
 
@@ -407,22 +407,22 @@ Request body:
 
 Validation:
 
-* All required fields must be present.
-* `id` must be unique.
-* `id` must be a string.
-* `birthDate` must use `YYYY-MM-DD`.
+- All required fields must be present.
+- `id` must be unique.
+- `id` must be a string.
+- `birthDate` must use `YYYY-MM-DD`.
 
 Success:
 
-* Status code: `201`
-* Response body: the newly created author.
+- Status code: `201`
+- Response body: the newly created author.
 
 Errors:
 
-* `400` if a required field is missing.
-* `400` if the author ID already exists.
-* `400` if the data format is invalid.
-* `500` if an unexpected server or database error occurs.
+- `400` if a required field is missing.
+- `400` if the author ID already exists.
+- `400` if the data format is invalid.
+- `500` if an unexpected server or database error occurs.
 
 ---
 
@@ -444,15 +444,15 @@ The author ID comes from the URL and cannot be changed.
 
 Success:
 
-* Status code: `200`
-* Response body: the updated author.
+- Status code: `200`
+- Response body: the updated author.
 
 Errors:
 
-* `400` if a required field is missing.
-* `400` if invalid data is submitted.
-* `404` if the author does not exist.
-* `500` if an unexpected server or database error occurs.
+- `400` if a required field is missing.
+- `400` if invalid data is submitted.
+- `404` if the author does not exist.
+- `500` if an unexpected server or database error occurs.
 
 ---
 
@@ -467,7 +467,7 @@ The API must not delete an author if the author is still associated with any boo
 The existence check should use a targeted query such as:
 
 ```js
-findOne({ authorId: authorId })
+findOne({ authorId: authorId });
 ```
 
 rather than retrieving all matching relationships.
@@ -476,7 +476,7 @@ rather than retrieving all matching relationships.
 
 Return:
 
-* Status code: `400`
+- Status code: `400`
 
 Response:
 
@@ -492,15 +492,15 @@ The author and its relationships must remain unchanged.
 
 If the author exists and has no book relationships:
 
-* Delete the author.
-* Return `204`.
-* No response body.
+- Delete the author.
+- Return `204`.
+- No response body.
 
 ### Author does not exist
 
 Return:
 
-* `404`
+- `404`
 
 Example:
 
@@ -514,7 +514,7 @@ Example:
 
 Return:
 
-* `500`
+- `500`
 
 Response:
 
@@ -532,10 +532,10 @@ The relationship collection does not necessarily require its own public CRUD rou
 
 Book-author relationships should be managed as part of the book CRUD operations:
 
-* `POST /books` creates the required relationships.
-* `PUT /books/:id` replaces the existing relationships.
-* `DELETE /books/:id` removes the book's relationships.
-* `DELETE /authors/:id` checks the relationships before allowing deletion.
+- `POST /books` creates the required relationships.
+- `PUT /books/:id` replaces the existing relationships.
+- `DELETE /books/:id` removes the book's relationships.
+- `DELETE /authors/:id` checks the relationships before allowing deletion.
 
 This keeps the public API simple while maintaining the many-to-many relationship.
 
@@ -556,9 +556,9 @@ The following rules must always be enforced:
 
 Where practical, the database should enforce uniqueness for:
 
-* `books.id`
-* `authors.id`
-* the combination of `bookAuthors.bookId` and `bookAuthors.authorId`
+- `books.id`
+- `authors.id`
+- the combination of `bookAuthors.bookId` and `bookAuthors.authorId`
 
 ---
 
@@ -566,14 +566,14 @@ Where practical, the database should enforce uniqueness for:
 
 The API must:
 
-* Validate request bodies before database operations.
-* Accept only explicitly permitted fields.
-* Prevent clients from modifying custom IDs.
-* Avoid directly passing unrestricted request bodies into MongoDB update operations.
-* Prevent MongoDB operator injection through unsanitized update data.
-* Store MongoDB credentials in environment variables.
-* Avoid returning raw database errors to clients.
-* Return consistent JSON error messages for `400`, `404`, and `500` responses.
+- Validate request bodies before database operations.
+- Accept only explicitly permitted fields.
+- Prevent clients from modifying custom IDs.
+- Avoid directly passing unrestricted request bodies into MongoDB update operations.
+- Prevent MongoDB operator injection through unsanitized update data.
+- Store MongoDB credentials in environment variables.
+- Avoid returning raw database errors to clients.
+- Return consistent JSON error messages for `400`, `404`, and `500` responses.
 
 ---
 
@@ -584,23 +584,23 @@ Database queries should be targeted.
 Examples:
 
 ```js
-findOne({ id: bookId })
+findOne({ id: bookId });
 ```
 
 ```js
-findOne({ id: authorId })
+findOne({ id: authorId });
 ```
 
 ```js
-findOne({ authorId: authorId })
+findOne({ authorId: authorId });
 ```
 
 For larger collections, indexes should be considered for:
 
-* `books.id`
-* `authors.id`
-* `bookAuthors.bookId`
-* `bookAuthors.authorId`
+- `books.id`
+- `authors.id`
+- `bookAuthors.bookId`
+- `bookAuthors.authorId`
 
 A compound unique index on `bookAuthors` should prevent duplicate relationships:
 
@@ -616,30 +616,30 @@ Swagger must document every public book and author route.
 
 ### Books
 
-* `GET /books`
-* `GET /books/{id}`
-* `POST /books`
-* `PUT /books/{id}`
-* `DELETE /books/{id}`
+- `GET /books`
+- `GET /books/{id}`
+- `POST /books`
+- `PUT /books/{id}`
+- `DELETE /books/{id}`
 
 ### Authors
 
-* `GET /authors`
-* `GET /authors/{id}`
-* `POST /authors`
-* `PUT /authors/{id}`
-* `DELETE /authors/{id}`
+- `GET /authors`
+- `GET /authors/{id}`
+- `POST /authors`
+- `PUT /authors/{id}`
+- `DELETE /authors/{id}`
 
 Swagger documentation must include:
 
-* Path parameters.
-* Required request bodies.
-* Request examples.
-* Successful response codes.
-* Error response codes.
-* Example JSON responses.
-* The `authorIds` field for book creation/update.
-* The many-to-many relationship behavior where relevant.
+- Path parameters.
+- Required request bodies.
+- Request examples.
+- Successful response codes.
+- Error response codes.
+- Example JSON responses.
+- The `authorIds` field for book creation/update.
+- The many-to-many relationship behavior where relevant.
 
 The Swagger UI must allow every public route to be tested directly from `/api-docs`.
 
@@ -649,11 +649,11 @@ The Swagger UI must allow every public route to be tested directly from `/api-do
 
 After implementation:
 
-* All existing Week 01 GET book routes must continue working.
-* All book CRUD operations must work locally.
-* All author CRUD operations must work locally.
-* Book-author relationships must be correctly created, updated, and deleted.
-* Author deletion must be blocked when relationships exist.
-* Swagger must display all book and author routes.
-* All routes must work on the deployed Render application.
-* The deployed `/api-docs` page must allow testing of all public operations.
+- All existing Week 01 GET book routes must continue working.
+- All book CRUD operations must work locally.
+- All author CRUD operations must work locally.
+- Book-author relationships must be correctly created, updated, and deleted.
+- Author deletion must be blocked when relationships exist.
+- Swagger must display all book and author routes.
+- All routes must work on the deployed Render application.
+- The deployed `/api-docs` page must allow testing of all public operations.
