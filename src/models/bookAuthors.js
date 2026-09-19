@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { authorsCollection, bookAuthorsCollection } from '../db/connect.js';
+=======
+import { authorsCollection, bookAuthorsCollection } from "../db/connect.js";
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 /** ************************************************
 

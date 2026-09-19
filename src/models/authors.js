@@ -3,7 +3,11 @@
  * This file contains the database business logic only - the functions for interacting with the authors collection in the database.
  ***************************************************/
 
+<<<<<<< HEAD
 import { authorsCollection, bookAuthorsCollection } from '../db/connect.js';
+=======
+import { authorsCollection, bookAuthorsCollection } from "../db/connect.js";
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 /** ************************************************
  * Retrieves all authors.
@@ -57,6 +61,7 @@ const updateAuthor = async (authorId, author) => {
         birthDate: author.birthDate,
         nationality: author.nationality,
       },
+<<<<<<< HEAD
     }
   );
 
@@ -64,6 +69,15 @@ const updateAuthor = async (authorId, author) => {
     return null;
   }
 
+=======
+    },
+  );
+
+  if (result.matchedCount === 0) {
+    return null;
+  }
+
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
   return getAuthorById(authorId);
 };
 
@@ -76,7 +90,11 @@ const deleteAuthor = async (authorId) => {
   });
 
   if (relationship) {
+<<<<<<< HEAD
     return 'associated';
+=======
+    return "associated";
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
   }
 
   const result = await authorsCollection.deleteOne({
@@ -87,7 +105,11 @@ const deleteAuthor = async (authorId) => {
     return null;
   }
 
+<<<<<<< HEAD
   return 'deleted';
+=======
+  return "deleted";
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 };
 
 export {

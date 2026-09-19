@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 
 import {
   getBooksHandler,
@@ -6,7 +6,11 @@ import {
   createBookHandler,
   updateBookHandler,
   deleteBookHandler,
+<<<<<<< HEAD
 } from '../controllers/books.js';
+=======
+} from "../controllers/books.js";
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 const router = express.Router();
 
@@ -23,7 +27,7 @@ const router = express.Router();
  *       500:
  *         description: Internal server error
  */
-router.get('/books', getBooksHandler);
+router.get("/books", getBooksHandler);
 
 /**
  * @openapi
@@ -48,7 +52,7 @@ router.get('/books', getBooksHandler);
  *       500:
  *         description: Internal server error
  */
-router.get('/books/:id', getBookByIdHandler);
+router.get("/books/:id", getBookByIdHandler);
 
 /**
  * @openapi
@@ -71,6 +75,7 @@ router.get('/books/:id', getBookByIdHandler);
  *             properties:
  *               id:
  *                 type: string
+<<<<<<< HEAD
  *                 example: b2
  *               title:
  *                 type: string
@@ -83,26 +88,52 @@ router.get('/books/:id', getBookByIdHandler);
  *                 type: array
  *                 minItems: 1
  *                 uniqueItems: true
+=======
+ *                 example: b4
+ *               title:
+ *                 type: string
+ *                 example: 1984
+ *               publicationDate:
+ *                 type: string
+ *                 example: 1949-06-08
+ *               authorIds:
+ *                 type: array
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *                 items:
  *                   type: string
  *                 example:
  *                   - a1
+<<<<<<< HEAD
  *                   - a2
+=======
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     responses:
  *       201:
  *         description: Book created successfully
  *       400:
+<<<<<<< HEAD
  *         description: Invalid book data, duplicate ID, duplicate authors, or author not found
  *       500:
  *         description: Internal server error
  */
 router.post('/books', createBookHandler);
+=======
+ *         description: Invalid data, book ID already exists, or one or more authors do not exist
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/books", createBookHandler);
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 /**
  * @openapi
  * /books/{id}:
  *   put:
+<<<<<<< HEAD
  *     summary: Update an existing book
+=======
+ *     summary: Update a book
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     tags:
  *       - Books
  *     parameters:
@@ -126,6 +157,7 @@ router.post('/books', createBookHandler);
  *             properties:
  *               title:
  *                 type: string
+<<<<<<< HEAD
  *                 example: Updated Book
  *               publicationDate:
  *                 type: string
@@ -135,28 +167,51 @@ router.post('/books', createBookHandler);
  *                 type: array
  *                 minItems: 1
  *                 uniqueItems: true
+=======
+ *                 example: 1984
+ *               publicationDate:
+ *                 type: string
+ *                 example: 1949-06-08
+ *               authorIds:
+ *                 type: array
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *                 items:
  *                   type: string
  *                 example:
  *                   - a1
+<<<<<<< HEAD
  *                   - a3
+=======
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     responses:
  *       200:
  *         description: Book updated successfully
  *       400:
+<<<<<<< HEAD
  *         description: Invalid book data, duplicate authors, or author not found
+=======
+ *         description: Invalid book data
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *       404:
  *         description: Book not found
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 router.put('/books/:id', updateBookHandler);
+=======
+router.put("/books/:id", updateBookHandler);
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 /**
  * @openapi
  * /books/{id}:
  *   delete:
+<<<<<<< HEAD
  *     summary: Delete a book
+=======
+ *     summary: Delete a book by id
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
  *     tags:
  *       - Books
  *     parameters:
@@ -175,6 +230,12 @@ router.put('/books/:id', updateBookHandler);
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 router.delete('/books/:id', deleteBookHandler);
 
 export default router;
+=======
+router.delete("/books/:id", deleteBookHandler);
+
+export default router;
+>>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344

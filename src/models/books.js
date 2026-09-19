@@ -1,12 +1,15 @@
 import {
-    booksCollection,
-    authorsCollection,
-    bookAuthorsCollection
-} from '../db/connect.js';
+  booksCollection,
+  authorsCollection,
+  bookAuthorsCollection,
+} from "../db/connect.js";
 
-/** ************************************************
- * Retrieves all books.
- ***************************************************/
+import { authorsExist } from "./bookAuthors.js";
+
+/**
+
+* Retrieves all books with their authors.
+  */
 const getAllBooks = async () => {
     const books = await booksCollection.aggregate([
         {
@@ -32,31 +35,70 @@ const getAllBooks = async () => {
         }
     ]).toArray();
 
-    return books;
+  for (const book of books) {
+    const relationships = await bookAuthorsCollection
+      .find({
+        bookId: book.id,
+      })
+      .toArray();
+
+    const authorIds = relationships.map((relationship) => {
+      return relationship.authorId;
+    });
+
+    book.authors = await authorsCollection
+      .find({
+        id: { $in: authorIds },
+      })
+      .toArray();
+  }
+
+  return books;
 };
 
-/** ************************************************
- * Retrieves a book by its ID.
- ***************************************************/
+/**
+
+* Retrieves a book by its ID with its authors.
+  */
 const getBookById = async (bookId) => {
     const book = await booksCollection.findOne({
         id: bookId
     });
 
-    return book;
+  if (!book) {
+    return null;
+  }
+
+  const relationships = await bookAuthorsCollection
+    .find({
+      bookId,
+    })
+    .toArray();
+
+  const authorIds = relationships.map((relationship) => {
+    return relationship.authorId;
+  });
+
+  book.authors = await authorsCollection
+    .find({
+      id: { $in: authorIds },
+    })
+    .toArray();
+
+  return book;
 };
 
-/** ************************************************
+/** *************************************************
  * Creates a new book.
- ***************************************************/
+ *****************************************************/
 const createBook = async (book) => {
-    const existingBook = await booksCollection.findOne({
-        id: book.id
-    });
+  const existingBook = await booksCollection.findOne({
+    id: book.id,
+  });
 
-    if (existingBook) {
-        return null;
-    }
+  if (existingBook) {
+    return null;
+  }
 
     const uniqueAuthorIds = new Set(book.authorIds);
 
@@ -70,39 +112,40 @@ const createBook = async (book) => {
         })
         .toArray();
 
-    if (authors.length !== book.authorIds.length) {
-        return 'authors-not-found';
-    }
+  if (!validAuthors) {
+    return "authors-not-found";
+  }
 
-    await booksCollection.insertOne({
-        id: book.id,
-        title: book.title,
-        publicationDate: book.publicationDate
-    });
+  await booksCollection.insertOne({
+    id: book.id,
+    title: book.title,
+    publicationDate: book.publicationDate,
+  });
 
-    const relationships = book.authorIds.map((authorId) => {
-        return {
-            bookId: book.id,
-            authorId
-        };
-    });
+  const relationships = book.authorIds.map((authorId) => {
+    return {
+      bookId: book.id,
+      authorId,
+    };
+  });
 
-    await bookAuthorsCollection.insertMany(relationships);
+  await bookAuthorsCollection.insertMany(relationships);
 
-    return getBookById(book.id);
+  return getBookById(book.id);
 };
 
-/** ************************************************
- * Updates an existing book.
- ***************************************************/
+/**
+
+* Updates an existing book.
+  */
 const updateBook = async (bookId, book) => {
-    const existingBook = await booksCollection.findOne({
-        id: bookId
-    });
+  const existingBook = await booksCollection.findOne({
+    id: bookId,
+  });
 
-    if (!existingBook) {
-        return null;
-    }
+  if (!existingBook) {
+    return null;
+  }
 
     const uniqueAuthorIds = new Set(book.authorIds);
 
@@ -116,59 +159,54 @@ const updateBook = async (bookId, book) => {
         })
         .toArray();
 
-    if (authors.length !== book.authorIds.length) {
-        return 'authors-not-found';
-    }
+  if (!validAuthors) {
+    return "authors-not-found";
+  }
 
-    await booksCollection.updateOne(
-        { id: bookId },
-        {
-            $set: {
-                title: book.title,
-                publicationDate: book.publicationDate
-            }
-        }
-    );
+  await booksCollection.updateOne(
+    { id: bookId },
+    {
+      $set: {
+        title: book.title,
+        publicationDate: book.publicationDate,
+      },
+    },
+  );
 
-    await bookAuthorsCollection.deleteMany({
-        bookId
-    });
+  await bookAuthorsCollection.deleteMany({
+    bookId,
+  });
 
-    const relationships = book.authorIds.map((authorId) => {
-        return {
-            bookId,
-            authorId
-        };
-    });
+  const relationships = book.authorIds.map((authorId) => {
+    return {
+      bookId,
+      authorId,
+    };
+  });
 
-    await bookAuthorsCollection.insertMany(relationships);
+  await bookAuthorsCollection.insertMany(relationships);
 
-    return getBookById(bookId);
+  return getBookById(bookId);
 };
 
-/** ************************************************
- * Deletes a book by its ID.
- ***************************************************/
+/**
+
+* Deletes a book by its ID.
+  */
 const deleteBook = async (bookId) => {
-    const result = await booksCollection.deleteOne({
-        id: bookId
-    });
+  const result = await booksCollection.deleteOne({
+    id: bookId,
+  });
 
-    if (result.deletedCount === 0) {
-        return null;
-    }
+  if (result.deletedCount === 0) {
+    return null;
+  }
 
-    await bookAuthorsCollection.deleteMany({
-        bookId
-    });
+  await bookAuthorsCollection.deleteMany({
+    bookId,
+  });
 
-    return true;
+  return true;
 };
 
-export {
-    getAllBooks,
-    getBookById,
-    createBook,
-    updateBook,
-    deleteBook
-};
+export { getAllBooks, getBookById, createBook, updateBook, deleteBook };
