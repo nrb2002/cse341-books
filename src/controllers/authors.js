@@ -6,10 +6,6 @@ import {
   deleteAuthor,
 } from "../models/authors.js";
 
-/** ************************************************
- * Validates the birthDate format (YYYY-MM-DD).
- ***************************************************/
- 
 /**
  * Checks whether a value is a valid YYYY-MM-DD date.
  */
@@ -29,10 +25,9 @@ const isValidBirthDate = (birthDate) => {
   );
 };
 
-/** ************************************************
+/**
  * Retrieves all authors.
- ***************************************************/
-
+ */
 const getAuthorsHandler = async (req, res) => {
   try {
     const authors = await getAllAuthors();
@@ -47,10 +42,9 @@ const getAuthorsHandler = async (req, res) => {
   }
 };
 
-/** ************************************************
+/**
  * Retrieves an author by ID.
- ***************************************************/
- 
+ */
 const getAuthorByIdHandler = async (req, res) => {
   const requestedId = req.params.id;
 
@@ -73,10 +67,9 @@ const getAuthorByIdHandler = async (req, res) => {
   }
 };
 
-/** ************************************************
+/**
  * Creates a new author.
- ***************************************************/
- 
+ */
 const createAuthorHandler = async (req, res) => {
   const { id, name, birthDate, nationality } = req.body;
 
@@ -124,10 +117,9 @@ const createAuthorHandler = async (req, res) => {
   }
 };
 
-/** ************************************************
+/**
  * Updates an existing author.
- ***************************************************/
- 
+ */
 const updateAuthorHandler = async (req, res) => {
   const requestedId = req.params.id;
   const { name, birthDate, nationality } = req.body;
@@ -173,10 +165,9 @@ const updateAuthorHandler = async (req, res) => {
   }
 };
 
-/** ************************************************
+/**
  * Deletes an author.
- ***************************************************/
- 
+ */
 const deleteAuthorHandler = async (req, res) => {
   const requestedId = req.params.id;
 
