@@ -6,11 +6,7 @@ import {
   createAuthorHandler,
   updateAuthorHandler,
   deleteAuthorHandler,
-<<<<<<< HEAD
 } from '../controllers/authors.js';
-=======
-} from "../controllers/authors.js";
->>>>>>> 9938e76bdfd78d022b3346951089a86d7511f344
 
 const router = express.Router();
 
